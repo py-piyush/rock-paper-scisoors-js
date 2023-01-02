@@ -1,9 +1,28 @@
 //! javascript
 // app.js: Implement logic of rock paper scissors game
 
+const choices = ['rock', 'paper', 'scissors'];
+const size = choices.length;
 function getComputerChoice(){
-    const choices = ['rock', 'paper', 'scissors'];
     let randomIndex = Math.floor(Math.random() * 3);
     let computerChoice = choices[randomIndex];
     return computerChoice;
+}
+
+function playRound(playerSelection, computerSelection){
+    let playerIndex = choices.indexOf(playerSelection);
+    let computerIndex = choices.indexOf(computerSelection);
+    if (playerIndex === -1 || computerIndex === -1){
+        return 'Invalid Choice!';
+    }
+    if ((playerIndex + 1) % size === computerIndex){
+        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+    }
+    else if ((computerIndex + 1) % size === playerIndex){
+        return `You Win! ${playerSelection} beats ${computerSelection}`;
+    }
+    else {
+        return 'Tie!';
+    }
+    
 }
