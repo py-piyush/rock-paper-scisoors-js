@@ -27,40 +27,73 @@ function playRound(playerSelection, computerSelection){
     
 }
 
-function overallWinner(pwin, cwin)
-{
-    if (pwin > cwin)
-    {
-        return 'Player';
+let playerWins = 0, computerWins = 0;
+
+let playerChoice;
+let computerChoice;
+const btns = document.querySelectorAll('.btn');
+function listener(e){
+    playerChoice = e.target.getAttribute("id");
+    game()
+}
+btns.forEach((btn)=>{
+    btn.addEventListener('click', listener)
+});
+function game(){
+    computerChoice = getComputerChoice();
+    let result = playRound(playerChoice, computerChoice);
+    if (result === 1){
+        playerWins++;
     }
-    else if (cwin > pwin){
-        return 'Computer';
+    else if (result === -1){
+        computerWins++;
     }
-    else {
-        return 'Nobody';
+    setScore();
+    printResult(result);
+    if (playerWins === 5 || computerWins === 5){
+        finalResult();
+        btns.forEach((btn)=>btn.removeEventListener('click', listener));
     }
 }
 
-function game(){
-    const numberOfRounds = 5;
-    let playerWins = 0, computerWins = 0;
-    for (let i = 1; i <= 5; i++){
-        let playerChoice = prompt("Enter your choice: ").toLocaleLowerCase();
-        let computerChoice = getComputerChoice();
-        let gameResult = playRound(playerChoice, computerChoice);
-        if (gameResult === 1){
-            playerWins ++ ;
-            console.log(`Round ${i}: You Win! ${playerChoice} beats ${computerChoice}`);
-        }
-        else if (gameResult === -1){
-            computerWins ++; 
-            console.log(`Round ${i}: You Lose! ${computerChoice} beats ${playerChoice}`);
-        }
-        else {
-            console.log(`Round ${i}: Tie!`);
-        }
+function setScore(){
+    document.querySelector(".player>p").textContent = playerWins;
+    document.querySelector(".computer>p").textContent = computerWins;
+}
+
+function printResult(result){
+    const p = document.createElement('p');
+    p.classList.add('result')
+    const results = document.querySelector('.result-container');
+    if (result === 1){
+        p.textContent = `You Win! ${playerChoice} beats ${computerChoice}`
+        p.style.color = '#61ec61';
     }
-    console.log(`Player won ${playerWins} round(s)`);
-    console.log(`Computer won ${computerWins} round(s)`);
-    console.log(`${overallWinner(playerWins, computerWins)} won the game!!`)
+    else if (result === -1){
+        p.textContent = `You Lose! ${computerChoice} beats ${playerChoice}`;
+        p.style.color = '#ee524d';
+    }
+    else {
+        p.textContent = `Tie!`;
+        p.style.color = 'yellow';
+    }
+    results.appendChild(p);
+}
+
+function finalResult(){
+    scorecard = document.querySelector('#section1');
+    finalContainer = document.createElement('div');
+    finalContainer.classList.add('result-container');
+    final = document.createElement('p');
+    final.style.fontSize = '30px';
+    if (playerWins === 5){
+        final.style.color = '#61ec61';
+        final.textContent = 'CONGRATULATIONS!! You won the game.';
+    }
+    else if (computerWins === 5){
+        final.style.color = '#ee52d4';
+        final.textContent = 'GAME OVER!! You lost the game.'
+    }
+    finalContainer.appendChild(final);
+    scorecard.appendChild(finalContainer);
 }
