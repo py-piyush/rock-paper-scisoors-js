@@ -1,6 +1,14 @@
 //! javascript
 // app.js: Implement logic of rock paper scissors game
 
+
+const newGame = document.querySelector('.btn-new');
+newGame.addEventListener('click',function(){
+    location.reload();
+})
+
+
+
 const choices = ['rock', 'paper', 'scissors'];
 const size = choices.length;
 function getComputerChoice(){

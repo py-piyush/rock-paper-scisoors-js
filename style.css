@@ -61,7 +61,7 @@ h2{
     margin: 30px auto;
 }
 
-.btn{
+.btn, .btn-new{
     padding: 20px;
     width: 150px;
     height: 150px;
@@ -71,10 +71,15 @@ h2{
     border: none;
     border-radius: 50%;
 }
-.btn:hover{
+.btn:hover, .btn-new:hover{
     cursor: pointer;
     background-color: #61ec61;
     font-weight: bold;
+}
+.btn-new{
+    width: auto;
+    height: auto;
+    border-radius: 5px;
 }
 
 .result-container{
