@@ -26,3 +26,12 @@ function playRound(playerSelection, computerSelection){
     }
     
 }
+
+function game(){
+    const numberOfRounds = 5;
+    for (let i = 1; i <= 5; i++){
+        let playerChoice = prompt("Enter your choice: ").toLocaleLowerCase();
+        let computerChoice = getComputerChoice();
+        console.log(`Round ${i}: ${playRound(playerChoice, computerChoice)}`);
+    }
+}
