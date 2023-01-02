@@ -5,10 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPS</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header>
+        <h1 class="title">Rock Paper Scissors</h1>
+    </header>
+    <main>
+        <section id="section1">
+            <h2>ScoreCard</h2>
+            <div class="scorecard-container">
+                
+                <div class="score player">
+                    <h3>Player</h3>
+                    <p>0</p>
+                </div>
+                <div class="score computer">
+                    <h3>Computer</h3>
+                    <p>0</p>
+                </div>
+            </div>
+        </section>
+        <section id="section2">
+            <div class="btn-container">
+                <button id="rock" class="btn">Rock</button>
+                <button id="paper" class="btn">Paper</button>
+                <button id="scissors" class="btn">Scissors</button>
+            </div>
+        </section>
+        <section id="section3">
+            <h2>Results</h2>
+            <div class="result-container"></div>
+        </section>
+    </main>
 </body>
 <script src="app.js"></script>
 </html>
